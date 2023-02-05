@@ -1,0 +1,42 @@
+<!-- 
+   input lines, line 6-7, is where the content from users is put. 
+   It specifies the expected value for the input throught a place holder
+-->
+
+<input type="text" id="txt-price" placeholder="Enter the price of the item">
+<input type="text" id="txt-quantity" placeholder="Enter the quanity of the item">
+<button id="btn-submit">Calculate</button> <!--creates a button id called calculated-->>
+<div id="output"></div>  <!--creates the output id -->
+
+<!-- 
+   line 17-20, is where the content from users is taken and saved in the variables
+   or recieved action take by user and saved in a variable
+-->
+<script>
+
+  var priceInput = document.getElementById('txt-price');
+  var quantityInput = document.getElementById('txt-quantity');
+  var submitBtn = document.getElementById('btn-submit');
+  var output = document.getElementById('output');
+
+  //create a function based in the action taken on the button
+  submitBtn.addEventListener('click', function () {
+      //if button is clicked, save the input values in new variable
+    var price = priceInput.value; 
+    var quanity = quantityInput.value;
+        //line 27-28 casts the variables to number 
+    price = +price;
+    quanity = +quanity;
+    //if the inputs are not number, print out error message
+    if (Number.isNaN(price) || Number.isNaN(quanity)) {
+      output.innerHTML = 'Invalid input';
+      return;
+    }
+    //calculate the price
+    var totalPrice = price * quanity;
+    //round the price
+    totalPrice = Math.round(totalPrice * 100) / 100;
+    //print out the result
+    output.innerHTML = quanity + ' items at $' + price + ' each is $' + totalPrice;
+  });
+</script>
